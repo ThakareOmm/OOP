@@ -1,4 +1,4 @@
-ackage complex;
+package complex;
 import java.util.*;
 
 public class practice{
