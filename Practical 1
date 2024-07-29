@@ -7,7 +7,7 @@ public class practice{
 	int c;
 	int d;
 	practice(){
-		System.out.println("This is program to calculate sum opf two complex number");
+		System.out.println("This is program to calculate sum of two complex number");
 	}
 	void accept() {
 		this.a = a;
