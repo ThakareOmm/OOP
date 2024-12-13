@@ -1,0 +1,48 @@
+			 
+		 }
+	 }
+	 
+	 private void updateRecord(String a,String b) {
+		// TODO Auto-generated method stub
+		Scanner s=null;
+		String oldFileName="studentRecords.txt";
+		String tempName="temp.txt";
+		File oldFile=new File(oldFileName);
+		File newFile=new File(tempName);
+		try {
+			
+			FileWriter fw=new FileWriter(tempName,false);
+			BufferedWriter bw=new BufferedWriter(fw);
+			PrintWriter pw=new PrintWriter(bw);
+			s=new Scanner(new File(oldFileName));
+			
+			while(s.hasNext()) {
+				String data=s.next();
+				if(data.equals(a)) {
+					pw.println(b);
+				}else {
+					pw.println(data);
+				}
+				
+			}
+			s.close();
+			pw.flush();
+			pw.close();
+			oldFile.delete();
+			File rename=new File(oldFileName);
+			newFile.renameTo(rename);
+			System.out.println("\t*********RECORD UPDATED***********\n\n");
+			showMenu();
+			
+			
+		} catch (Exception e) {
+			System.out.println("Error!!");
+		}
+		
+	}
+
+	public static void main(String args[]) throws IOException
+	 {
+		 StudentRecords call = new StudentRecords();
+		 call.showMenu();
+	 }
