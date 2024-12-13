@@ -1,0 +1,104 @@
+package prac8;
+import java.util.*;
+abstract class Car {
+    protected String type;
+    protected List<String> accessories = new ArrayList<>();
+
+    public abstract void allocateAccessories();
+    public abstract void finalMakeup();
+
+    public void build() {
+        allocateAccessories();
+        finalMakeup();
+    }
+
+    @Override
+    public String toString() {
+        return type + " with accessories: " + String.join(", ", accessories);
+    }
+}
+
+class Hatchback extends Car {
+    public Hatchback() {
+        this.type = "Hatchback";
+    }
+
+    @Override
+    public void allocateAccessories() {
+        accessories.add("Hatchback-specific accessories");
+        accessories.add("Compact wheels");
+    }
+
+    @Override
+    public void finalMakeup() {
+        accessories.add("Hatchback paint job");
+    }
+}
+
+class Sedan extends Car {
+    public Sedan() {
+        this.type = "Sedan";
+    }
+
+    @Override
+    public void allocateAccessories() {
+        accessories.add("Sedan-specific accessories");
+        accessories.add("Luxury wheels");
+    }
+
+    @Override
+    public void finalMakeup() {
+        accessories.add("Sedan paint job");
+    }
+}
+
+class SUV extends Car {
+    public SUV() {
+        this.type = "SUV";
+    }
+
+    @Override
+    public void allocateAccessories() {
+        accessories.add("SUV-specific accessories");
+        accessories.add("All-terrain tires");
+    }
+
+    @Override
+    public void finalMakeup() {
+        accessories.add("SUV paint job");
+    }
+}
+class CarFactory {
+    public static Car createCar(String carType) {
+        Car car;
+
+        switch (carType.toLowerCase()) {
+            case "hatchback":
+                car = new Hatchback();
+                break;
+            case "sedan":
+                car = new Sedan();
+                break;
+            case "suv":
+                car = new SUV();
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown car type: " + carType);
+        }
+
+        car.build();
+        return car;
+    }
+}
+public class TestFactoryPattern {
+    public static void main(String[] args) {
+        Car hatchback = CarFactory.createCar("hatchback");
+        System.out.println(hatchback);
+
+        Car sedan = CarFactory.createCar("sedan");
+        System.out.println(sedan);
+
+        Car suv = CarFactory.createCar("suv");
+        System.out.println(suv);
+    }
+}
